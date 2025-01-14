@@ -3,6 +3,6 @@ COPY . .
 RUN mvn clean package -DskipTest
 
 FROM openjdk:17.0.1-jdk-slim
-COPY --from=build /target/gerenciadodetarefas-0.0.1-SNAPSHOT.jar  gerenciadodetarefas.jar
+COPY --from=build /target/GerenciadorDeTarefas-0.0.1-SNAPSHOT.jar  GerenciadorDeTarefas.jar
 EXPOSE 8080
-ENTRYPOINT [ "java","-jar","gerenciadodetarefas.jar" ]
+ENTRYPOINT [ "java","-jar","GerenciadorDeTarefas.jar" ]
