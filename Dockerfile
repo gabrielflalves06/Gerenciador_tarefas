@@ -4,8 +4,8 @@ FROM openjdk:17-jdk-slim
 # Definir o diretório de trabalho dentro do container
 WORKDIR /app
 
-# Copiar o arquivo JAR gerado pelo Maven para o container
-COPY target/GerenciadorDeTarefas.jar app.jar
+# Copiar o JAR gerado
+COPY target/*.jar app.jar
 
-# Configurar o comando de inicialização
+# Comando para rodar o backend
 CMD ["java", "-jar", "app.jar"]
