@@ -1,11 +1,9 @@
-# Usar a imagem oficial do OpenJDK
-FROM openjdk:17-jdk-slim
-
-# Definir o diretório de trabalho dentro do container
+FROM maven:3.8-openjdk-17 AS build
 WORKDIR /app
+COPY . .
+RUN mvn clean package -DskipTests
 
-# Copiar o JAR gerado
-COPY target/*.jar app.jar
-
-# Comando para rodar o backend
-CMD ["java", "-jar", "app.jar"]
+FROM openjdk:17
+COPY --from=build /app/target/gerenciador.jar /usr/app/gerenciador-de-tarefas.jar
+WORKDIR /usr/app
+CMD ["java", "-jar", "gerenciador-de-tarefas.jar"]

@@ -1,6 +1,6 @@
-target/*.jar
 *.log
 *.iml
 *.class
 .idea/
-target/
+target/*
+!target/*.jar
