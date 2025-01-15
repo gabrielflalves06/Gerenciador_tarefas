@@ -5,10 +5,11 @@ FROM openjdk:17-jdk-slim
 WORKDIR /app
 
 # Copie o arquivo .jar para dentro do contêiner no diretório /app
-COPY target\GerenciadorDeTarefas-0.0.1-SNAPSHOT.jar /app/GerenciadorDeTarefas-0.0.1-SNAPSHOT.jar
+COPY target/gerenciador-de-tarefas-0.0.1-SNAPSHOT.jar /app/gerenciador-de-tarefas.jar
+
 
 # Comando para rodar o .jar ao iniciar o contêiner
-ENTRYPOINT ["java", "-jar", "/app/GerenciadorDeTarefas-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT ["java", "-jar", "/app/gerenciador-de-tarefas.jar"]
 
 # Porta que a aplicação vai expor
 EXPOSE 8080
