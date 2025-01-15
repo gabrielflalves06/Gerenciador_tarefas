@@ -24,7 +24,7 @@ public class TarefaController {
     @Autowired
     private TarefaRepository tarefaRepository;
 
-    @GetMapping
+    @GetMapping("/")
     public List<Tarefas> listarTarefas() {
         return tarefaRepository.findAll();
     }
