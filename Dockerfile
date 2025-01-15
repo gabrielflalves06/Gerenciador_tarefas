@@ -1,9 +1,14 @@
-FROM maven:3.8-openjdk-17 AS build
-WORKDIR /app
-COPY . .
-RUN mvn clean package -DskipTests
+# Use a imagem base do OpenJDK 17
+FROM openjdk:17-jdk-slim
 
-FROM openjdk:17
-COPY --from=build /app/target/gerenciador.jar /usr/app/gerenciador-de-tarefas.jar
-WORKDIR /usr/app
-CMD ["java", "-jar", "gerenciador-de-tarefas.jar"]
+# Defina o diretório de trabalho no contêiner
+WORKDIR /app
+
+# Copie o arquivo .jar para dentro do contêiner no diretório /app
+COPY target\GerenciadorDeTarefas-0.0.1-SNAPSHOT.jar /app/GerenciadorDeTarefas-0.0.1-SNAPSHOT.jar
+
+# Comando para rodar o .jar ao iniciar o contêiner
+ENTRYPOINT ["java", "-jar", "/app/GerenciadorDeTarefas-0.0.1-SNAPSHOT.jar"]
+
+# Porta que a aplicação vai expor
+EXPOSE 8080
