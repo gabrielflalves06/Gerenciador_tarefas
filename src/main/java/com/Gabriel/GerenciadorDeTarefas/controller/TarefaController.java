@@ -18,6 +18,7 @@ import com.Gabriel.GerenciadorDeTarefas.model.Tarefas;
 import com.Gabriel.GerenciadorDeTarefas.repository.TarefaRepository;
 
 @RestController
+@RequestMapping("/tarefas")
 public class TarefaController {
 
     @Autowired
