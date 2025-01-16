@@ -9,4 +9,4 @@ FROM eclipse-temurin:21-jdk
 RUN mkdir /app
 COPY --from=builder /build/target/GerenciadorDeTarefas-0.0.1-SNAPSHOT.jar /app/GerenciadorDeTarefas-0.0.1-SNAPSHOT.jar
 WORKDIR /app
-CMD ["java","-jar","service.jar"]
+CMD ["java","-jar","GerenciadorDeTarefas-0.0.1-SNAPSHOT.jar"]
