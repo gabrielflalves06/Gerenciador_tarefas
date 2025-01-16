@@ -1,12 +1,14 @@
-## Build stage#
-FROM maven:3.9.6-eclipse-temurin-21 AS builder
-RUN mkdir /build
-COPY . /build
-WORKDIR /build
-RUN mvn clean package -DskipTests
-## Package stage
-FROM eclipse-temurin:21-jdk
-RUN mkdir /app
-COPY --from=builder /build/target/GerenciadorDeTarefas-0.0.1-SNAPSHOT.jar /app/GerenciadorDeTarefas-0.0.1-SNAPSHOT.jar
+# Use a imagem base do Java 17
+FROM openjdk:17-jdk-slim
+
+# Define o diretório de trabalho dentro do contêiner
 WORKDIR /app
-CMD ["java","-jar","GerenciadorDeTarefas-0.0.1-SNAPSHOT.jar"]
+
+# Copia o arquivo JAR gerado para o contêiner
+COPY target/GerenciadorDeTarefas-0.0.1-SNAPSHOT.jar app.jar
+
+# Expõe a porta usada pelo Spring Boot
+EXPOSE 8080
+
+# Comando para iniciar o aplicativo
+ENTRYPOINT ["java", "-jar", "app.jar"]
